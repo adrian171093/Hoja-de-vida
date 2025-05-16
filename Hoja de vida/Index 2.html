@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hoja de Vida - Adrián Méndez</title>
+  <style>
+    :root {
+      --primary: #4a90e2;
+      --bg: #f9fbfc;
+      --text: #333;
+      --accent: #6c63ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: var(--accent);
+      color: white;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 20px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .section {
+      display: none;
+      animation: slideUp 0.4s ease-in-out;
+      padding: 1rem 0;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .photo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 1rem auto;
+      display: block;
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .photo:hover {
+      transform: scale(1.05);
+    }
+
+    h2 {
+      border-left: 4px solid var(--primary);
+      padding-left: 0.5rem;
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    ul {
+      list-style-type: square;
+      padding-left: 1.2rem;
+    }
+
+    .progress-bar {
+      background: #eee;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      height: 12px;
+      overflow: hidden;
+    }
+
+    .progress-bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      animation: grow 1s ease forwards;
+    }
+
+    /* Overlay para imagen ampliada */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .overlay.active img {
+      transform: scale(1);
+    }
+
+    /* Botón de cerrar */
+    .close-btn {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: white;
+      background: rgba(0,0,0,0.4);
+      border: none;
+      cursor: pointer;
+      padding: 0 10px;
+      border-radius: 6px;
+      z-index: 1010;
+      transition: background 0.3s;
+    }
+
+    .close-btn:hover {
+      background: rgba(0,0,0,0.7);
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes grow {
+      from { width: 0; }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav {
+        flex-wrap: wrap;
+      }
+      nav button {
+        flex: 1 1 50%;
+        padding: 1rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Adrián Alexander Méndez Chamorro</h1>
+    <p>Estudiante Técnico en Programación y Mantenimiento</p>
+  </header>
+
+  <nav>
+    <button class="tab active" data-target="inicio">Inicio</button>
+    <button class="tab" data-target="educacion">Educación</button>
+    <button class="tab" data-target="experiencia">Experiencia</button>
+    <button class="tab" data-target="habilidades">Habilidades</button>
+    <button class="tab" data-target="contacto">Contacto</button>
+  </nav>
+
+  <div class="container">
+    <div id="inicio" class="section active">
+      <img src="Foto para hoja de vida.jpg" alt="Foto de perfil" class="photo" id="foto">
+      <p style="text-align:center;"> Soy un joven altamente motivado y comprometido con el aprendizaje continuo en el campo de la tecnología, con especial énfasis en el desarrollo de software, la informática aplicada y la resolución de problemas técnicos. Desde mis primeros acercamientos al mundo digital, he sentido una profunda fascinación por comprender cómo funcionan los sistemas informáticos, lo cual me ha impulsado a dedicar tiempo y esfuerzo de manera autodidacta para adquirir conocimientos más allá de lo impartido en los entornos académicos tradicionales.</p>
+
+    <p style="text-align:center;"> A lo largo de mi formación he desarrollado competencias sólidas en programación, mantenimiento de equipos de cómputo y análisis lógico, complementadas con una actitud proactiva, disciplinada y orientada a la mejora constante. Considero que la tecnología no solo es una herramienta transformadora, sino también un campo que requiere pasión, ética y responsabilidad, cualidades que me esfuerzo por aplicar en cada uno de los proyectos en los que participo.</p>
+
+<p style="text-align:center;">Me destaco por mi capacidad para adaptarme rápidamente a nuevas plataformas, entornos de desarrollo y metodologías de trabajo, así como por mi disposición permanente para resolver desafíos técnicos con creatividad y eficiencia. Esta mentalidad me ha permitido adquirir conocimientos prácticos en diversos lenguajes de programación, desarrollar aplicaciones funcionales y colaborar en entornos tanto individuales como colaborativos, incluso en situaciones que requieren iniciativa y liderazgo.</p>
+
+<p style="text-align:center;">Mi principal objetivo profesional es continuar fortaleciendo mis habilidades en el área de la tecnología, integrándome en proyectos innovadores que me permitan aportar con soluciones eficientes, seguras y sostenibles. Aspiro a convertirme en un profesional integral, capaz de generar un impacto positivo mediante el uso inteligente de las herramientas digitales y el pensamiento crítico aplicado a la resolución de problemas reales.</p>
+    </div>
+
+    <div id="educacion" class="section">
+      <h2>Educación</h2>
+      <ul>
+        <li><strong>Bachiller Académico - Técnico en Mantenimiento</strong><br>Colegio Concejo Municipal – 2023 - Actualidad (Atanasio Girardot)</li>
+        <li><strong>Técnico en Mantenimiento de Equipos Teleinformáticos</strong><br>SENA – Desde 2025</li>
+      </ul>
+    </div>
+
+    <div id="experiencia" class="section">
+      <h2>Experiencia</h2>
+      <ul>
+        <li>Desarrollo de videojuegos en Unity con C#</li>
+        <li>Aplicaciones web (HTML, CSS, JavaScript)</li>
+        <li>Mantenimiento y reparación de equipos de cómputo</li>
+      </ul>
+    </div>
+
+    <div id="habilidades" class="section">
+      <h2>Habilidades Técnicas</h2>
+
+      <p>HTML/CSS</p>
+      <div class="progress-bar"><span style="width: 80%;"></span></div>
+
+      <p>JavaScript</p>
+      <div class="progress-bar"><span style="width: 65%;"></span></div>
+
+      <p>Python</p>
+      <div class="progress-bar"><span style="width: 70%;"></span></div>
+
+      <p>C# (Unity)</p>
+      <div class="progress-bar"><span style="width: 65%;"></span></div>
+
+      <p>Arduino</p>
+      <div class="progress-bar"><span style="width: 40%;"></span></div>
+
+      <p>Java</p>
+      <div class="progress-bar"><span style="width: 40%;"></span></div>
+
+      <p>SQL</p>
+      <div class="progress-bar"><span style="width: 40%;"></span></div>
+
+      <p>Hardware y Soporte Técnico</p>
+      <div class="progress-bar"><span style="width: 85%;"></span></div>
+    </div>
+
+    <div id="contacto" class="section">
+      <h2>Contacto</h2>
+      <p><strong>Email:</strong> adrianmendez140708@gmail.com</p>
+      <p><strong>Teléfono:</strong> +57 301 4536030</p>
+      <p><strong>Ubicación:</strong> Girardota, Colombia</p>
+    </div>
+  </div>
+
+  <!-- Overlay de imagen ampliada -->
+  <div class="overlay" id="overlay">
+    <img src="Foto para hoja de vida.jpg" alt="Foto Ampliada" />
+  </div>
+  <button class="close-btn" id="closeBtn" aria-label="Cerrar imagen ampliada">&times;</button>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(btn => btn.classList.remove('active'));
+        sections.forEach(sec => sec.classList.remove('active'));
+        tab.classList.add('active');
+        const target = document.getElementById(tab.dataset.target);
+        target.classList.add('active');
+      });
+    });
+
+    // Funcionalidad de ampliación de imagen con animaciones y botón cerrar
+    const foto = document.getElementById('foto');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('closeBtn');
+
+    function abrirOverlay() {
+      overlay.classList.add('active');
+      closeBtn.style.display = 'block';
+      // Opcional: deshabilitar scroll cuando está activo
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarOverlay() {
+      overlay.classList.remove('active');
+      closeBtn.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    foto.addEventListener('click', abrirOverlay);
+    closeBtn.addEventListener('click', cerrarOverlay);
+    overlay.addEventListener('click', (e) => {
+      // Solo cerrar si se clickea fuera de la imagen (en el fondo)
+      if (e.target === overlay) {
+        cerrarOverlay();
+      }
+    });
+
+    // Para mejorar accesibilidad, cerrar con tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && overlay.classList.contains('active')) {
+        cerrarOverlay();
+      }
+    });
+  </script>
+</body>
+</html>
