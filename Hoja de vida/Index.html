@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hoja de Vida - Adrián Méndez</title>
+  <style>
+    :root {
+      --primary: #4a90e2;
+      --bg: #f9fbfc;
+      --text: #333;
+      --accent: #6c63ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: var(--accent);
+      color: white;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 20px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .section {
+      display: none;
+      animation: slideUp 0.4s ease-in-out;
+      padding: 1rem 0;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .photo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 1rem auto;
+      display: block;
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      border-left: 4px solid var(--primary);
+      padding-left: 0.5rem;
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    ul {
+      list-style-type: square;
+      padding-left: 1.2rem;
+    }
+
+    .progress-bar {
+      background: #eee;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      height: 12px;
+      overflow: hidden;
+    }
+
+    .progress-bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      animation: grow 1s ease forwards;
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes grow {
+      from { width: 0; }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav {
+        flex-wrap: wrap;
+      }
+      nav button {
+        flex: 1 1 50%;
+        padding: 1rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Adrián Alexander Méndez Chamorro</h1>
+    <p>Estudiante Técnico en Programación y Mantenimiento</p>
+  </header>
+
+  <nav>
+    <button class="tab active" data-target="inicio">Inicio</button>
+    <button class="tab" data-target="educacion">Educación</button>
+    <button class="tab" data-target="experiencia">Experiencia</button>
+    <button class="tab" data-target="habilidades">Habilidades</button>
+    <button class="tab" data-target="contacto">Contacto</button>
+  </nav>
+
+  <div class="container">
+    <div id="inicio" class="section active">
+      <img src="Foto para hoja de vida.jpg" alt="Foto de perfil" class="photo">
+      <p style="text-align:center;">Soy un joven apasionado por la tecnología, el desarrollo de software y la solución de problemas técnicos. Me destaco por ser autodidacta, proactivo y con una gran curiosidad por aprender nuevas herramientas digitales.</p>
+    </div>
+
+    <div id="educacion" class="section">
+      <h2>Educación</h2>
+      <ul>
+        <li><strong>Bachiller Academico - Técnico en Mantenimiento</strong><br>Colegio Concejo Municipal – 2023 - Actualidad (Atanasio Girardot)</li>
+        <li><strong>Técnico en Mantenimiento de equipos teleinformaticos</strong><br>Sena – Desde 2025</li>
+      </ul>
+    </div>
+
+    <div id="experiencia" class="section">
+      <h2>Experiencia</h2>
+      <ul>
+        <li>Desarrollo de videojuegos en Unity con C#</li>
+        <li>Aplicaciones web (HTML, CSS, JavaScript)</li>
+        <li>Mantenimiento y reparación de equipos de cómputo</li>
+      </ul>
+    </div>
+        
+    <!-- Lenguajes en los que programo: HTML, CSS, JS, C#, Python, Arduino, Java, SQL -->
+
+    <div id="habilidades" class="section">
+      <h2>Habilidades Técnicas</h2>
+
+      <p>HTML/CSS</p>
+      <div class="progress-bar"><span style="width: 80%;"></span></div>
+
+      <p>JavaScript</p>
+      <div class="progress-bar"><span style="width: 65%;"></span></div>
+
+      <p>Python</p>
+      <div class="progress-bar"><span style="width: 70%;"></span></div>
+
+      <p>C# (Unity)</p>
+      <div class="progress-bar"><span style="width: 65%;"></span></div>
+
+      <p>Arduino</p>
+      <div class="progress-bar"><span style="width: 40%;"></span></div>
+
+      <p>Java</p>
+      <div class="progress-bar"><span style="width: 40%;"></span></div>
+
+      <p>SQL</p>
+      <div class="progress-bar"><span style="width: 40%;"></span></div>
+
+      <p>Hardware y Soporte Técnico</p>
+      <div class="progress-bar"><span style="width: 85%;"></span></div>
+    </div>
+
+    <div id="contacto" class="section">
+      <h2>Contacto</h2>
+      <p><strong>Email:</strong> adrianmendez140708@gmail.com</p>
+      <p><strong>Teléfono:</strong> +57 301 4536030</p>
+      <p><strong>Ubicación:</strong> Girardota, Colombia</p>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(btn => btn.classList.remove('active'));
+        sections.forEach(sec => sec.classList.remove('active'));
+
+        tab.classList.add('active');
+        const target = document.getElementById(tab.dataset.target);
+        target.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
